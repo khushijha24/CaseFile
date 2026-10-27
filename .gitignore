@@ -1,0 +1,19 @@
+
+# Frontend dependencies and build files
+casefile-frontend/node_modules/
+casefile-frontend/.next/
+casefile-frontend/out/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Backend build files
+casefile-backend/target/
+
+# IDE and operating system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
