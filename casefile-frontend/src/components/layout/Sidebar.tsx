@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FolderOpen, House, Search, User } from "lucide-react";
+import { usePathname } from "next/navigation";import { FolderOpen, LayoutDashboard, Search, Settings, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
-  { href: "/", label: "Home", icon: House },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/cases", label: "Cases", icon: FolderOpen },
   { href: "/profile", label: "Profile", icon: User },
 ];
@@ -26,8 +25,7 @@ export default function Sidebar() {
 
       <nav className="flex flex-col gap-1 p-3">
         {items.map(({ href, label, icon: Icon }) => {
-          const active =
-            href === "/" ? pathname === "/" : pathname.startsWith(href);
+          const active = pathname.startsWith(href);
           return (
             <Link
               key={href}

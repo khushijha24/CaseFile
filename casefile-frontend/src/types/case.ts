@@ -11,4 +11,5 @@ export interface Case {
   time: string;
   objective: string;
   image: string; // path inside /public
+  tags: string[];
 }

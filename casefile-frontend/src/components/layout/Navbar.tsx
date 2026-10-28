@@ -1,3 +1,7 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +13,7 @@ const links = [
 ];
 
 export default function Navbar({ overlay = false }: { overlay?: boolean }) {
+  const pathname = usePathname();
   return (
     <header
       className={
@@ -27,7 +32,13 @@ export default function Navbar({ overlay = false }: { overlay?: boolean }) {
           <ul className="hidden items-center gap-8 text-xl text-white/80 sm:flex">
             {links.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="transition hover:text-gold">
+                <Link
+                  href={link.href}
+                  className={cn(
+                    "border-b pb-1 transition hover:text-gold",
+                    pathname === link.href ? "border-gold text-gold" : "border-transparent"
+                  )}
+                >
                   {link.label}
                 </Link>
               </li>
@@ -35,9 +46,19 @@ export default function Navbar({ overlay = false }: { overlay?: boolean }) {
           </ul>
         </div>
       
-        <Button asChild size="lg" className="bg-gold text-ink text-md hover:bg-gold-dim">
-          <Link href="/sign-in">Sign in</Link>
-        </Button>
+        <div className="flex items-center gap-3">
+          <Link href="/sign-in" className="text-lg text-white/80 transition hover:text-gold">
+            Sign in
+          </Link>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-gold/60 bg-transparent text-gold hover:bg-gold/10 hover:text-gold text-md"
+          >
+            <Link href="/sign-in">Sign up</Link>
+          </Button>
+        </div>
       </nav>
     </header>
   );
